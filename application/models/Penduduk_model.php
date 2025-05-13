@@ -1,0 +1,198 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Penduduk_model extends CI_Model{
+
+  public $table = 'penduduk';
+  public $id    = 'id_penduduk';
+  public $order = 'DESC';
+
+
+  function get_all()
+  {
+    $this->db->select('*');
+    $this->db->from('penduduk');
+    $this->db->join('provinsi', 'penduduk.id_provinsi = provinsi.id_provinsi', 'left');
+    $this->db->join('kecamatan', 'penduduk.id_kecamatan = kecamatan.id_kecamatan', 'left');
+    $this->db->join('kota_kab', 'penduduk.id_kota_kab = kota_kab.id_kota_kab', 'left');
+    $this->db->join('desa_kelurahan', 'penduduk.id_desa_kelurahan = desa_kelurahan.id_desa_kelurahan', 'left');
+    $this->db->where('is_delete', '0');
+
+    return $this->db->get()->result();
+  }
+
+  function cek_nik($nik)
+  {
+    $this->db->where('nik', $nik);
+    return $this->db->get($this->table)->row();
+  }
+
+  function get_all_combobox()
+  {
+    $this->db->order_by('name');
+    $data = $this->db->get($this->table);
+
+    if($data->num_rows() > 0)
+    {
+      foreach($data->result_array() as $row)
+      {
+        $result[''] = '- Please Choose Users';
+        $result[$row['id_users']] = $row['name'];
+      }
+      return $result;
+    }
+  }
+
+  function get_negara() {
+    $this->db->select('*');
+    $this->db->from('negara');
+    
+    return $this->db->get()->result();
+  }
+
+  function get_agama() {
+    $this->db->select('*');
+    $this->db->from('agama');
+    
+    return $this->db->get()->result();
+  }
+
+  function get_all_provinsi() {
+    $query ="SELECT * FROM provinsi";
+    // $this->db->join('penduduk', 'penduduk.id_provinsi = provinsi.id_provinsi', 'left');
+    // $this->db->select('*');
+    // $this->db->from('provinsi');
+    $query = $this->db->query($query);
+    
+    return $query->result();
+  }
+
+  function get_all_kabupaten() {
+    $this->db->select('*');
+    $this->db->from('kota_kab');        
+    return $this->db->get()->result();
+  }
+
+  function get_all_kecamatan() {
+    $this->db->select('*');
+    $this->db->from('kecamatan');        
+    return $this->db->get()->result();
+  }
+
+  function get_all_kelurahan() {
+    $this->db->select('*');
+    $this->db->from('desa_kelurahan');        
+    return $this->db->get()->result();
+  }
+
+  public function get_kabupaten($data = null)
+  {
+      $where = ' ';
+      if (@$data['id_kota_kab']) {
+          $where .= "AND a.id_kota_kab = '" . $data['id_kota_kab'] . "'";
+      }
+      if (@$data['id_provinsi']) {
+          $where .= "AND a.id_provinsi = '" . $data['id_provinsi'] . "'";
+      }
+      $sql = 'SELECT a.*
+      FROM kota_kab AS a 
+      WHERE 1+1=2 ' . $where;
+      $query = $this->db->query($sql);
+      $result = $query->result_array();
+      return $result;
+  }
+
+  public function get_kecamatan($data = null)
+  {
+      $where = ' ';
+      if (@$data['id_kota_kab']) {
+          $where .= "AND a.id_kota_kab = '" . $data['id_kota_kab'] . "'";
+      }
+      if (@$data['id_kecamatan']) {
+          $where .= "AND a.id_kecamatan = '" . $data['id_kecamatan'] . "'";
+      }
+      $sql = 'SELECT a.*
+      FROM kecamatan AS a 
+      WHERE 1+1=2 ' . $where;
+      $query = $this->db->query($sql);
+      $result = $query->result_array();
+      return $result;
+  }
+
+  public function get_desa_kelurahan($data = null)
+  {
+      $where = ' ';
+      if (@$data['id_kecamatan']) {
+          $where .= "AND a.id_kecamatan = '" . $data['id_kecamatan'] . "'";
+      }
+      if (@$data['id_desa_kelurahan']) {
+          $where .= "AND a.id_desa_kelurahan = '" . $data['id_desa_kelurahan'] . "'";
+      }
+      $sql = 'SELECT a.*
+      FROM desa_kelurahan AS a 
+      WHERE 1+1=2 ' . $where;
+      $query = $this->db->query($sql);
+      $result = $query->result_array();
+      return $result;
+  }
+
+  function get_all_deleted()
+  {
+    $this->db->join('provinsi', 'penduduk.id_provinsi = provinsi.id_provinsi', 'left');
+    $this->db->join('kecamatan', 'penduduk.id_kecamatan = kecamatan.id_kecamatan', 'left');
+    $this->db->join('kota_kab', 'penduduk.id_kota_kab = kota_kab.id_kota_kab', 'left');
+    $this->db->join('desa_kelurahan', 'penduduk.id_desa_kelurahan = desa_kelurahan.id_desa_kelurahan', 'left');
+    $this->db->where('is_delete', '1');
+    return $this->db->get($this->table)->result();
+  }
+
+  function get_by_id($id)
+  {
+    $this->db->join('provinsi', 'penduduk.id_provinsi = provinsi.id_provinsi', 'left');
+    $this->db->join('kecamatan', 'penduduk.id_kecamatan = kecamatan.id_kecamatan', 'left');
+    $this->db->join('kota_kab', 'penduduk.id_kota_kab = kota_kab.id_kota_kab', 'left');
+    $this->db->join('desa_kelurahan', 'penduduk.id_desa_kelurahan = desa_kelurahan.id_desa_kelurahan', 'left');
+    $this->db->where($this->id, $id);
+    return $this->db->get($this->table)->row();
+  }
+
+  function get_by_nik($nik)
+  {
+    $this->db->join('provinsi', 'penduduk.id_provinsi = provinsi.id_provinsi', 'left');
+    $this->db->join('kecamatan', 'penduduk.id_kecamatan = kecamatan.id_kecamatan', 'left');
+    $this->db->join('kota_kab', 'penduduk.id_kota_kab = kota_kab.id_kota_kab', 'left');
+    $this->db->join('desa_kelurahan', 'penduduk.id_desa_kelurahan = desa_kelurahan.id_desa_kelurahan', 'left');
+    $this->db->where('penduduk.nik', $nik);
+    return $this->db->get($this->table)->row();
+  }
+
+  function total_rows()
+  {
+    return $this->db->get($this->table)->num_rows();
+  }
+
+  function insert($data)
+  {
+    $this->db->insert($this->table, $data);
+  }
+
+  function update($id,$data)
+  {
+    $this->db->where($this->id, $id);
+    $this->db->update($this->table, $data);
+  }
+
+  function soft_delete($id,$data)
+  {
+    
+    $this->db->where($this->id, $id);
+    $this->db->update($this->table, $data);
+  }
+
+  function delete($id)
+  {
+    $this->db->where($this->id, $id);
+    $this->db->delete($this->table);
+  }
+
+}

@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Myfontawesome';
+    src: url('Myfontawesome.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa-lpm:before {
+    font-family: Myfontawesome;
+    content: "A";
+}
+
+.fa-ppd:before {
+    font-family: Myfontawesome;
+    content: "B";
+}
+
+.fa-lamusta:before {
+    font-family: Myfontawesome;
+    content: "C";
+}

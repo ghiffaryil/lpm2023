@@ -1,0 +1,45 @@
+.sidebar-footer {
+  bottom: 8px;
+  clear: both;
+  display: block;
+  padding: 5px 0 0 0;
+  position: fixed;
+  width: 230px;
+}
+
+.sidebar-footer a {
+  padding: 7px 0 3px;
+  text-align: center;
+  width: 25%;
+  font-size: 17px;
+  display: block;
+  float: left;
+}
+
+.sidebar-footer a:hover {
+  background: #425567;
+  color: #00C0EF;
+}
+
+/* Mobile Menu  */
+.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+.mobile {
+    display:block;
+  }
+}
+
+/* desktop Menu  */
+.desktop {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+.desktop {
+    display:none;
+  }
+}
+
