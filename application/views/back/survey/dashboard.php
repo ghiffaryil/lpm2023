@@ -35,6 +35,9 @@
                                                     <p>Nama Mustahik</p>
                                                     <select id="nama_mustahik" name="nama_mustahik" class="form-control" style="cursor: pointer;">
                                                         <option value"" selected>Pilih nama mustahik...</option>
+                                                        <?php foreach ($data_mustahik as $data) { ?>
+                                                            <option value="<?php echo $data->nama_kepala_keluarga ?>"><?php echo $data->nama_kepala_keluarga ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </fieldset>
                                             </div>
@@ -43,6 +46,9 @@
                                                     <p>Petugas Survey</p>
                                                     <select id="petugas_survey" name="petugas_survey" class="form-control" style="cursor: pointer;">
                                                         <option value"" selected>Pilih petugas survey...</option>
+                                                        <?php foreach ($data_petugas as $data) { ?>
+                                                            <option value="<?php echo $data->petugas_survey ?>"><?php echo $data->petugas_survey ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </fieldset>
                                             </div>
@@ -176,13 +182,57 @@
             table.draw();
         });
 
+        // Filter Nama Mustahik
         $('#nama_mustahik').change(function() {
-            table.search($(this).val()).draw();
-        })
+            var value = $(this).val();
+            table.column(2).search(value).draw(); // Kolom ke-2 adalah 'Nama Mustahik'
+        });
 
+        // Filter Petugas Survey
         $('#petugas_survey').change(function() {
-            table.search($(this).val()).draw();
-        })
+            var value = $(this).val();
+            table.column(4).search(value).draw(); // Kolom ke-4 adalah 'Petugas Survey'
+        });
+
+        // Load Nama Mustahik
+        $.ajax({
+            type: "GET",
+            url: "getMustahik", // Endpoint untuk mendapatkan data nama mustahik
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+
+                let options = '<option value="">Pilih Nama Mustahik</option>';
+                response.forEach(function(row) {
+                    options += `<option value="${row.nama_kepala_keluarga}">${row.nama_kepala_keluarga}</option>`;
+                });
+                $('#nama_mustahik').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching nama_mustahik:", error);
+            }
+        });
+
+        // Load Petugas Survey
+        $.ajax({
+            type: "GET",
+            url: "getPetugasSurvey", // Endpoint untuk mendapatkan data petugas survey
+            dataType: "json",
+            success: function(response) {
+                let options = '<option value="">Pilih Petugas Survey</option>';
+                response.forEach(function(row) {
+                    options += `<option value="${row.petugas_survey}">${row.petugas_survey}</option>`;
+                });
+                $('#petugas_survey').html(options);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching petugas_survey:", error);
+            }
+        });
+
+        $('#nama_mustahik').select2();
+        $('#petugas_survey').select2();
+
     })
 
 
@@ -191,41 +241,41 @@
 
 
 
-    $.ajax({
-        type: "GET", // Method pengiriman data bisa dengan GET atau POST
-        url: `<?= site_url() ?>Survey/getMustahik`, // Isi dengan url/path file php yang dituju
-        success: function(response) {
-            response = JSON.parse(response)
-            console.log(response)
-            let option = '<option value="">Pilih Mustahik</option>'
-            for (const row of response) {
-                option += `<option value="${row.nama_mustahik}">${row.nama_mustahik}</option>`
-            }
-            $('#nama_mustahik').html(option);
-        },
-        error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
-            alert(thrownError); // Munculkan alert error
-        }
-    });
+    // $.ajax({
+    //     type: "GET", // Method pengiriman data bisa dengan GET atau POST
+    //     url: `<?= site_url() ?>Survey/getMustahik`, // Isi dengan url/path file php yang dituju
+    //     success: function(response) {
+    //         response = JSON.parse(response)
+    //         console.log(response)
+    //         let option = '<option value="">Pilih Mustahik</option>'
+    //         for (const row of response) {
+    //             option += `<option value="${row.nama_mustahik}">${row.nama_mustahik}</option>`
+    //         }
+    //         $('#nama_mustahik').html(option);
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
+    //         alert(thrownError); // Munculkan alert error
+    //     }
+    // });
 
-    $('#nama_mustahik').select2();
+    // $('#nama_mustahik').select2();
 
-    $.ajax({
-        type: "GET", // Method pengiriman data bisa dengan GET atau POST
-        url: `<?= site_url() ?>Survey/getPetugasSurvey`, // Isi dengan url/path file php yang dituju
-        success: function(response) {
-            response = JSON.parse(response)
-            console.log(response)
-            let option = '<option value="">Pilih Petugas Survey</option>'
-            for (const row of response) {
-                option += `<option value="${row.petugas_survey}">${row.petugas_survey}</option>`
-            }
-            $('#petugas_survey').html(option);
-        },
-        error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
-            alert(thrownError); // Munculkan alert error
-        }
-    });
+    // $.ajax({
+    //     type: "GET", // Method pengiriman data bisa dengan GET atau POST
+    //     url: `<?= site_url() ?>Survey/getPetugasSurvey`, // Isi dengan url/path file php yang dituju
+    //     success: function(response) {
+    //         response = JSON.parse(response)
+    //         console.log(response)
+    //         let option = '<option value="">Pilih Petugas Survey</option>'
+    //         for (const row of response) {
+    //             option += `<option value="${row.petugas_survey}">${row.petugas_survey}</option>`
+    //         }
+    //         $('#petugas_survey').html(option);
+    //     },
+    //     error: function(xhr, ajaxOptions, thrownError) { // Ketika ada error
+    //         alert(thrownError); // Munculkan alert error
+    //     }
+    // });
 
-    $('#petugas_survey').select2();
+    // $('#petugas_survey').select2();
 </script>

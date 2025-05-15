@@ -190,7 +190,7 @@ class Komunitas extends CI_Controller
     } else {
 
         $config['upload_path'] = './assets/lampiran/';
-        $config['overwrite'] = TRUE;       
+        $config['overwrite'] = TRUE;
         $config['allowed_types'] = 'png|jpg|gif|ico|jpeg|pdf';
         $this->load->library('upload', $config);
 
@@ -254,8 +254,6 @@ class Komunitas extends CI_Controller
           'legalitas_1'         => $legalitas_1,
           'legalitas_2'         => $legalitas_2,
           'legalitas_3'         => $legalitas_3,
-          'periode_bantuan'       => date('Y-m-d'),
-          'total_periode'         => 1,
           'deleted_at'          => '0000-00-00 00:00:00',
           'created_at'          => date('Y-m-d H:i:s'),
           'created_by'          => $this->session->username,

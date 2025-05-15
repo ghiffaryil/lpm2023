@@ -41,6 +41,15 @@ class Survey extends CI_Controller
         //     $this->session->set_flashdata('message', '<div class="alert alert-danger">You can\'t access last page</div>');
         //     redirect('dashboard');
         // }
+        $sql_mustahik = "SELECT id, nama_kepala_keluarga FROM scoring GROUP BY nama_kepala_keluarga ";
+        $res_mustahik = $this->db->query($sql_mustahik)->result(); // Gunakan result_array() untuk array asosiatif
+        $this->data['data_mustahik'] = $res_mustahik;
+
+        $sql_petugas = "SELECT id, petugas_survey FROM scoring GROUP BY petugas_survey";
+        $res_petugas = $this->db->query($sql_petugas)->result();
+        $this->data['data_petugas'] = $res_petugas;
+
+
         $this->data['page_title'] = $this->data['module'] . ' Dashboard';
         $this->data['header'] = $this->data['module'];
         $this->data['data_survey'] = $this->db->get('scoring')->result();
@@ -439,30 +448,33 @@ class Survey extends CI_Controller
 
     public function getMustahik()
     {
-        $sql = "SELECT id, nama_mustahik FROM scoring ORDER BY nama_mustahik ASC";
-        $res = $this->db->query($sql)->result();
+        $sql = "SELECT id, nama_kepala_keluarga FROM scoring ORDER BY nama_kepala_keluarga ASC ";
+        $res = $this->db->query($sql)->result_array(); // Gunakan result_array() untuk array asosiatif
+        error_log(json_encode($res)); // Log data ke file log
         echo json_encode($res);
     }
     public function getPetugasSurvey()
     {
-        $sql = "SELECT id, petugas_survey FROM scoring  GROUP BY petugas_survey";
-        $res = $this->db->query($sql)->result();
+        $sql = "SELECT id, petugas_survey FROM scoring GROUP BY petugas_survey";
+        $res = $this->db->query($sql)->result_array(); // Gunakan result_array() untuk array asosiatif
         echo json_encode($res);
     }
 
     public function getScoring()
     {
         $sql = "SELECT * FROM scoring";
-        $res = $this->db->query($sql)->result();
-        // echo json_encode($res);
+        $res = $this->db->query($sql)->result_array();
 
         $response = array(
             'status'  => 1,
             'message' => 'Get List Data Successfully.',
             'data'    => $res
         );
+
+        error_log(json_encode($response)); // Log data ke file log
         header('Content-Type: application/json');
         echo json_encode($response);
+        exit;
     }
 
     public function detail()
