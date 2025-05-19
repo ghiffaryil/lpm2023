@@ -787,7 +787,7 @@
 		var counts = {};
 
 		table
-			.column(13, {
+			.column(16, {
 				search: 'applied'
 			})
 			.data()
@@ -812,7 +812,7 @@
 		var count = {};
 
 		table
-			.column(10, {
+			.column(11, {
 				search: 'applied'
 			})
 			.data()

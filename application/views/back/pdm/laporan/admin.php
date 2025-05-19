@@ -236,7 +236,7 @@ href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.mi
 														</a>
 													</td>
 												</tr>
-												<?php 
+												<?php
 												$no += 1;
 											} ?>
 										</tbody>
@@ -322,16 +322,16 @@ href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.mi
 											<th>JK</th>
 
 											<th>STATUS PERNIKAHAN</th>
-											
+
 											<th>TEMPAT LAHIR</th>
 											<th>TANGGAL LAHIR</th>
-											
+
 											<th>ALAMAT RUMAH</th>
 											<th>KELURAHAN</th>
 											<th>KECAMATAN</th>
 											<th>KOTA/KAB</th>
 											<th>PROVINSI</th>
-											
+
 											<th>FAKTOR PENYEBAB</th>
 											<th>PRA BIMROH</th>
 											<th>PASCA BIMROH</th>
@@ -370,18 +370,18 @@ href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.mi
 
 												<td><?php echo $data->total_periode ?></td>
 												<td><?php echo $data->nama_rekomender ?></td>
-												
+
 
 												<td><?php echo $data->nik_transaksi ?></td>
 												<td><?php echo ucwords($data->nama_penduduk) ?></td>
 												<td><?php echo strtolower('FOTO') ?></td>
 												<td><?php echo $data->jk ?></td>
-												
+
 												<td><?php echo $data->status_perkawinan ?></td>
 
 												<td><?php echo $data->tmpt_lahir ?></td>
 												<td><?php echo $data->tgl_lahir ?></td>
-												
+
 												<td><?php echo $data->alamat ?></td>
 												<td>
 													<?php foreach($get_all_kelurahan as $row){
@@ -415,7 +415,7 @@ href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.mi
 												<td><?php echo "-" #$data->faktor_penyebab ?></td>
 												<td><?php echo "-" #$data->pra_bimroh ?></td>
 												<td><?php echo "-" #$data->pasca_bimroh ?></td>
-												
+
 												<td>
 													<a href="<?php echo base_url('pdm/detail_laporan_komunitas/'.$data->nik) ?>"
 														class="btn btn-primary btn-sm" title="Detail">
@@ -423,7 +423,7 @@ href="https://cdn.datatables.net/searchpanes/2.0.2/css/searchPanes.dataTables.mi
 													</a>
 												</td>
 											</tr>
-											<?php 
+											<?php
 											$no += 1;
 										} ?>
 									</tbody>
@@ -754,7 +754,7 @@ function chartData(table) {
 	var counts = {};
 
 	table
-	.column(16, {
+	.column(25, {
 		search: 'applied'
 	})
 	.data()
@@ -778,7 +778,7 @@ function chartDatas(table) {
 	var count = {};
 
 	table
-	.column(18, {
+	.column(30, {
 		search: 'applied'
 	})
 	.data()

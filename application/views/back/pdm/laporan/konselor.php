@@ -65,11 +65,11 @@
             <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');} ?>
         </section>
 
-        <section class="basic-elements">          
+        <section class="basic-elements">
           <div class="row">
 			<div class="col-md-12">
 				<div class="card">
-					<div class="card-body">  
+					<div class="card-body">
 
 						<div class="row">
 							<div class="col-md-12">
@@ -228,7 +228,7 @@
 																	</a>
 																</td>
 															</tr>
-															<?php 
+															<?php
 															$no += 1;
 														} ?>
 														</tbody>
@@ -282,7 +282,7 @@
 				                                        </fieldset>
 					                            	</div>
 					                            </div>
-					                        </div>					                        
+					                        </div>
 			                            	<table id="tabel-komunitas" class="table table-striped nowrap" width="100%">
 												<thead>
 													<tr>
@@ -304,7 +304,7 @@
 														<th>PROGRAM</th>
 														<th>SUB PROGRAM</th>
 														<th>JENIS BANTUAN</th>
-														
+
 														<th>ASNAF</th>
 														<th>SUMBER DANA</th>
 														<th>JUMLAH BANTUAN</th>
@@ -326,7 +326,7 @@
 															<td><?php echo $data->profil_komunitas ?></td>
 											                <!-- <td><?php echo $data->nik_transaksi ?></td>
 								        					<td><?php echo ucwords($data->nama_penduduk) ?></td>
-															
+
 															<td><?php echo $data->jumlah_pm ?> Orang</td> -->
 															<td><?php echo $data->alamat ?></td>
 															<td>
@@ -362,15 +362,15 @@
 															<td><?php echo ucwords($data->nama_penduduk) ?></td>
 															<td><?php echo $data->nik_transaksi ?></td>
 															<td><?php echo strtolower('FOTO') ?></td>
-															<td><?php echo strtolower($data->nama_program) ?></td>	
-															
-												
+															<td><?php echo strtolower($data->nama_program) ?></td>
+
+
 											                <td><?php echo $data->nama_subprogram ?></td>
 															<td><?php echo $data->jenis_bantuan ?></td>
 															<td><?php echo $data->asnaf ?></td>
 															<td><?php echo $data->sumber_dana ?></td>
 															<td>Rp. <?php echo number_format($data->jumlah_bantuan) ?></td>
-											               
+
 															<td>
 											                	<?php if ($data->periode_bantuan == '0000-00-00') {
 												                	echo "-";
@@ -384,10 +384,10 @@
 															<td>
 												                <a href="<?php echo base_url('pdm/detail_laporan_komunitas/'.$data->nik) ?>" class="btn btn-primary btn-sm" title="Detail">
 												                	<span><i class="fa fa-eye"></i></span>
-												                </a> 	
+												                </a>
 												            </td>
 										            	</tr>
-													<?php 
+													<?php
 														$no += 1;
 													} ?>
 							                    </tbody>
@@ -397,7 +397,7 @@
 
 
 	                        	</div>
-								
+
 							</div>
 						</div>
 					</div>
@@ -407,7 +407,7 @@
 	    </section>
           <br><br><br><br>
         </div>
-    </div> 
+    </div>
 </div>
 
 <?php $this->load->view('back/template/footer'); ?>
@@ -430,13 +430,13 @@
 
 <script type="text/javascript">
 	var minDate, maxDate, minDate2, maxDate2;
- 
+
 	$.fn.dataTable.ext.search.push(
 	    function( settings, data, dataIndex ) {
 	        var min = minDate.val();
 	        var max = maxDate.val();
 	        var date = new Date( data[1] );
-	 
+
 	        if (
 	            ( min === null && max === null ) ||
 	            ( min === null && date <= max ) ||
@@ -457,7 +457,7 @@
 	        var min2 = minDate2.val();
 	        var max2 = maxDate2.val();
 	        var date2 = new Date( data[1] );
-	 
+
 	        if (
 	            ( min2 === null && max2 === null ) ||
 	            ( min2 === null && date2 <= max2 ) ||
@@ -469,7 +469,7 @@
 	        return false;
 	    }
 	);
-	 
+
 	$(document).ready(function() {
 
 	    minDate = new DateTime($('#min'), {
@@ -485,7 +485,7 @@
 	    maxDate2 = new DateTime($('#maxKom'), {
 	        format: 'YYYY-MM-DD'
 	    });
-	 
+
 	    var table = $('#tabel-individu').DataTable({
 	    	"scrollX"	: true,
 	    	"searchPanes" :{
@@ -508,43 +508,43 @@
 	            "info": "Page _PAGE_ of _PAGES_",
 	            "infoFiltered": "(filtered from _MAX_ total records)"
 	        },
-	    	"buttons"	: [ 
+	    	"buttons"	: [
 	    		{
                     extend: 'copy',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
                     }
-                },  
+                },
                 {
                     extend: 'csv',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
                     }
-                }, 
+                },
 	    		{
                     extend: 'excel',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
                     }
-                }, 
+                },
 	    		{
                     extend: 'print',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
                     },
                     customize: function(win){
-		 
+
 		                var last = null;
 		                var current = null;
 		                var bod = [];
-		 
+
 		                var css = '@page { size: landscape; }',
 		                    head = win.document.head || win.document.getElementsByTagName('head')[0],
 		                    style = win.document.createElement('style');
-		 
+
 		                style.type = 'text/css';
 		                style.media = 'print';
-		 
+
 		                if (style.styleSheet)
 		                {
 		                  style.styleSheet.cssText = css;
@@ -553,10 +553,10 @@
 		                {
 		                  style.appendChild(win.document.createTextNode(css));
 		                }
-		 
+
 		                head.appendChild(style);
 		         	}
-                } 
+                }
 	    	]
 	    });
 
@@ -582,19 +582,19 @@
 	            "info": "Page _PAGE_ of _PAGES_",
 	            "infoFiltered": "(filtered from _MAX_ total records)"
 	        },
-	    	"buttons"	: [ 
+	    	"buttons"	: [
 	    		{
                     extend: 'copy',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     }
-                },  
+                },
                 {
                     extend: 'csv',
                     exportOptions: {
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     }
-                }, 
+                },
 	    		{
                     extend: 'excel',
                     exportOptions: {
@@ -607,18 +607,18 @@
                         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
                     },
                     customize: function(win){
-		 
+
 		                var last = null;
 		                var current = null;
 		                var bod = [];
-		 
+
 		                var css = '@page { size: landscape; }',
 		                    head = win.document.head || win.document.getElementsByTagName('head')[0],
 		                    style = win.document.createElement('style');
-		 
+
 		                style.type = 'text/css';
 		                style.media = 'print';
-		 
+
 		                if (style.styleSheet)
 		                {
 		                  style.styleSheet.cssText = css;
@@ -627,13 +627,13 @@
 		                {
 		                  style.appendChild(win.document.createTextNode(css));
 		                }
-		 
+
 		                head.appendChild(style);
 		         	}
-                } 
+                }
 	    	]
 	    }).searchPanes.rebuildPane();
-	 
+
 	    $('#min, #max').on('change', function () {
 	        table.draw();
 	    });
@@ -649,7 +649,7 @@
 		$('#carikomunitas').change(function(){
 		    table2.search($(this).val()).draw() ;
 		})
- 
+
 	    var chart = Highcharts.chart('chart1', {
 	        chart: {
 	            type: 'pie',
@@ -672,7 +672,7 @@
 	            text: 'Rekomendasi',
 	        },
 	        series: [
-	            {	
+	            {
 	                data: chartDatas(table),
 	            },
 	        ],
@@ -700,12 +700,12 @@
 	            text: 'Sub Program',
 	        },
 	        series: [
-	            {	
+	            {
 	                data: chartDatas2(table2),
 	            },
 	        ],
 	    });
-	 
+
 	    table.on('draw', function () {
 	        chart.series[0].setData(chartData(table));
 	    });
@@ -727,7 +727,7 @@
 	    var counts = {};
 
 	    table
-	        .column(16, { search: 'applied' })
+	        .column(27, { search: 'applied' })
 	        .data()
 	        .each(function (val) {
 	            if (counts[val]) {
@@ -736,7 +736,7 @@
 	                counts[val] = 1;
 	            }
 	        });
-	 
+
 	    return $.map(counts, function (val, key) {
 	        return {
 	            name: key,
@@ -749,7 +749,7 @@
 	    var count = {};
 
 	    table
-	        .column(18, { search: 'applied' })
+	        .column(32, { search: 'applied' })
 	        .data()
 	        .each(function (val) {
 	            if (count[val]) {
@@ -758,7 +758,7 @@
 	                count[val] = 1;
 	            }
 	        });
-	 
+
 	    return $.map(count, function (val, key) {
 	        return {
 	            name: key,
@@ -783,7 +783,7 @@
 	                counts2[val] = 1;
 	            }
 	        });
-	 
+
 	    return $.map(counts2, function (val, key) {
 	        return {
 	            name: key,
@@ -805,7 +805,7 @@
 	                count2[val] = 1;
 	            }
 	        });
-	 
+
 	    return $.map(count2, function (val, key) {
 	        return {
 	            name: key,

@@ -607,7 +607,7 @@
 		var counts = {};
 
 		table
-			.column(28, {
+			.column(32, {
 				search: 'applied'
 			})
 			.data()
@@ -632,7 +632,7 @@
 		var count = {};
 
 		table
-			.column(27, {
+			.column(31, {
 				search: 'applied'
 			})
 			.data()
