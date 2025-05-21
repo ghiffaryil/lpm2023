@@ -172,7 +172,6 @@
 																<th>TOTAL PERIODE BANTUAN</th>
 
 																<th>PENYALUR</th>
-																<th>PENGAJUAN</th>
 																<th>REKOMENDER</th>
 																<th>KETERANGAN</th>
 																<th>Action</th>
@@ -222,7 +221,6 @@
 																	<td><?php echo $data->total_periode ?></td>
 
 																	<td><?php echo $data->penyalur ?></td>
-																	<td><?php echo $data->pengajuan ?></td>
 																	<td><?php echo $data->nama_rekomender ?></td>
 																	<td><?php echo $data->keterangan ?></td>
 																	<td class="text-center">

@@ -234,7 +234,6 @@
 																<th>SUB PROGRAM</th>
 																<th>NAMA SEKOLAH</th>
 																<th>YANG MENYALURKAN</th>
-																<th>PENGAJUAN</th>
 																<th>KET</th>
 																<th>Created at</th>
 
@@ -261,7 +260,6 @@
 																	<td> <?php echo $data->nama_subprogram ?> </td>
 																	<td><?php echo $data->sekolah_nama ?></td>
 																	<td><?php echo $data->penyalur ?></td>
-																	<td><?php echo $data->pengajuan ?></td>
 																	<td><?php echo $data->keterangan ?></td>
 																	<td><?php echo $data->tanggal_transaksi ?></td>
 

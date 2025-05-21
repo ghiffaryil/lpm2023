@@ -30,6 +30,7 @@ class Ytb extends CI_Controller
 
   function konselor()
   {
+    $this->session->set_flashdata('message', '');
     is_login();
     is_read();
 
@@ -102,7 +103,6 @@ class Ytb extends CI_Controller
       'keterangan'      => $this->input->post('keterangan'),
       'periode_bantuan'      => $this->input->post('periode_bantuan'),
       'total_periode'      => $this->input->post('total_periode'),
-      'pengajuan'      => $this->input->post('pengajuan'),
       'created_at'         => date('Y-m-d H:i:s'),
       'deleted_at'         => '0000-00-00 00:00:00',
       'created_by'         => $this->session->username
@@ -270,7 +270,8 @@ class Ytb extends CI_Controller
       ON `penduduk`.`nik` = `transaksi_individu`.`nik`
       LEFT JOIN `provinsi`
       ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-      WHERE `transaksi_individu`.`id_program` = 7";
+      WHERE `transaksi_individu`.`id_program` = 7
+      AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_provinsi = $this->db->query($sql_provinsi)->result_array();
     $arr_prov = [];
     for ($i = 0; $i < count($res_sql_provinsi); $i++) {
@@ -289,7 +290,8 @@ class Ytb extends CI_Controller
           ON `penduduk`.`nik` = `transaksi_individu`.`nik`
           LEFT JOIN `kota_kab`
           ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-          WHERE `transaksi_individu`.`id_program` = 7";
+          WHERE `transaksi_individu`.`id_program` = 7
+          AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kab_kota = $this->db->query($sql_kab_kota)->result_array();
     $arr_kab_kota = [];
     $jumlah_bantuan = 0;
@@ -310,7 +312,8 @@ class Ytb extends CI_Controller
           ON `penduduk`.`nik` = `transaksi_individu`.`nik`
           LEFT JOIN `kecamatan`
           ON `penduduk`.`id_kecamatan` = `kecamatan`.`id_kecamatan`
-          WHERE `transaksi_individu`.`id_program` = 7";
+          WHERE `transaksi_individu`.`id_program` = 7
+          AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kecamatan = $this->db->query($sql_kecamatan)->result_array();
     $arr_kecamatan = [];
     for ($i = 0; $i < count($res_sql_kecamatan); $i++) {
@@ -325,7 +328,8 @@ class Ytb extends CI_Controller
     ON `penduduk`.`nik` = `transaksi_individu`.`nik`
     LEFT JOIN `desa_kelurahan`
     ON `penduduk`.`id_desa_kelurahan` = `desa_kelurahan`.`id_desa_kelurahan`
-    WHERE `transaksi_individu`.`id_program` = 7";
+    WHERE `transaksi_individu`.`id_program` = 7
+    AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_desa_kelurahan = $this->db->query($sql_desa_kelurahan)->result_array();
     $arr_desa_kelurahan = [];
     for ($i = 0; $i < count($res_sql_desa_kelurahan); $i++) {
@@ -341,7 +345,8 @@ class Ytb extends CI_Controller
     FROM  `transaksi_individu`
     LEFT JOIN `sub_program`
     ON `transaksi_individu`.`id_subprogram` = `sub_program`.`id_subprogram`
-    WHERE `transaksi_individu`.`id_program` = 7";
+    WHERE `transaksi_individu`.`id_program` = 7
+    AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_sub_program = $this->db->query($sql_sub_program)->result_array();
 
     $arr_sub_program = [];
@@ -372,7 +377,8 @@ class Ytb extends CI_Controller
     FROM  `transaksi_individu`
     LEFT JOIN `penduduk`
     ON `penduduk`.`nik` = `transaksi_individu`.`nik`
-    WHERE `transaksi_individu`.`id_program` = 7";
+    WHERE `transaksi_individu`.`id_program` = 7
+    AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_jk = $this->db->query($sql_jk)->result_array();
 
     $arr_jk = [];

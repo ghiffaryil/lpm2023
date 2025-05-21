@@ -211,10 +211,10 @@
                                     <?php } ?>
                                   </select>
                                 </fieldset>
-                                <fieldset class="form-group">
+                                <!-- <fieldset class="form-group">
                                   <p>Pengajuan</p>
                                   <input type="text" class="form-control text-capitalize" id="pengajuan" name="pengajuan">
-                                </fieldset>
+                                </fieldset> -->
                                 <fieldset class="form-group">
                                   <p>Sumber Dana</p>
                                   <input type="text" class="form-control text-capitalize" id="sumber_dana" name="sumber_dana">

@@ -622,7 +622,8 @@ class Darling extends CI_Controller
         ON `penduduk`.`nik` = `transaksi_individu`.`nik`
         LEFT JOIN `provinsi`
         ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-        WHERE `transaksi_individu`.`id_program` = 3";
+        WHERE `transaksi_individu`.`id_program` = 3
+        AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_provinsi = $this->db->query($sql_provinsi)->result_array();
     $arr_prov = [];
     for ($i = 0; $i < count($res_sql_provinsi); $i++) {
@@ -637,7 +638,8 @@ class Darling extends CI_Controller
      ON `penduduk`.`nik` = `transaksi_individu`.`nik`
      LEFT JOIN `kota_kab`
      ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-     WHERE `transaksi_individu`.`id_program` = 3";
+     WHERE `transaksi_individu`.`id_program` = 3
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kab_kota = $this->db->query($sql_kab_kota)->result_array();
     $arr_kab_kota = [];
     $jumlah_bantuan = 0;
@@ -658,7 +660,8 @@ class Darling extends CI_Controller
      ON `penduduk`.`nik` = `transaksi_komunitas`.`nik`
      LEFT JOIN `provinsi`
      ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-     WHERE `transaksi_komunitas`.`id_program` = 3";
+     WHERE `transaksi_komunitas`.`id_program` = 3
+     AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_provinsi_komunitas = $this->db->query($sql_provinsi_komunitas)->result_array();
     $arr_prov_komunitas = [];
     for ($i = 0; $i < count($res_sql_provinsi_komunitas); $i++) {
@@ -673,7 +676,8 @@ class Darling extends CI_Controller
     ON `penduduk`.`nik` = `transaksi_komunitas`.`nik`
     LEFT JOIN `kota_kab`
     ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-    WHERE `transaksi_komunitas`.`id_program` = 3";
+    WHERE `transaksi_komunitas`.`id_program` = 3
+    AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_kab_kota_komunitas = $this->db->query($sql_kab_kota_komunitas)->result_array();
     $arr_kab_kota_komunitas = [];
     $jumlah_bantuan_komunitas = 0;
@@ -696,7 +700,8 @@ class Darling extends CI_Controller
      FROM  `transaksi_komunitas`
      LEFT JOIN `sub_program`
      ON `transaksi_komunitas`.`id_subprogram` = `sub_program`.`id_subprogram`
-     WHERE `transaksi_komunitas`.`id_program` = 3";
+     WHERE `transaksi_komunitas`.`id_program` = 3
+     AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_sub_program = $this->db->query($sql_sub_program)->result_array();
 
     $arr_sub_program = [];

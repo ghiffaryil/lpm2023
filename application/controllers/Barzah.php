@@ -671,7 +671,8 @@ class Barzah extends CI_Controller
      FROM  `transaksi_individu`
      LEFT JOIN `sub_program`
      ON `transaksi_individu`.`id_subprogram` = `sub_program`.`id_subprogram`
-     WHERE `transaksi_individu`.`id_program` = 9";
+     WHERE `transaksi_individu`.`id_program` = 9
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_sub_program = $this->db->query($sql_sub_program)->result_array();
 
     $arr_sub_program = [];
@@ -701,7 +702,8 @@ class Barzah extends CI_Controller
     ON `penduduk`.`nik` = `transaksi_individu`.`nik`
     LEFT JOIN `kota_kab`
     ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-    WHERE `transaksi_individu`.`id_program` = 9";
+    WHERE `transaksi_individu`.`id_program` = 9
+    AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kab_kota_individu = $this->db->query($sql_kab_kota_individu)->result_array();
     $arr_kab_kota_individu = [];
     for ($i = 0; $i < count($res_sql_kab_kota_individu); $i++) {
@@ -726,7 +728,8 @@ class Barzah extends CI_Controller
     $sql_sebab_kematian = "SELECT
      `transaksi_individu`.`sebab_kematian` AS `sebab_kematian`
      FROM  `transaksi_individu`
-     WHERE `transaksi_individu`.`id_program` = 9";
+     WHERE `transaksi_individu`.`id_program` = 9
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_sebab_kematian = $this->db->query($sql_sebab_kematian)->result_array();
 
     $arr_sebab_kematian = [];
@@ -753,7 +756,8 @@ class Barzah extends CI_Controller
       FROM  `transaksi_komunitas`
       LEFT JOIN `penduduk`
       ON `penduduk`.`nik` = `transaksi_komunitas`.`nik`
-      WHERE `transaksi_komunitas`.`id_program` = 9";
+      WHERE `transaksi_komunitas`.`id_program` = 9
+      AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_jk = $this->db->query($sql_jk)->result_array();
 
     $arr_jk = [];
@@ -782,7 +786,8 @@ class Barzah extends CI_Controller
       ON `penduduk`.`nik` = `transaksi_komunitas`.`nik`
       LEFT JOIN `provinsi`
       ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-      WHERE `transaksi_komunitas`.`id_program` = 9";
+      WHERE `transaksi_komunitas`.`id_program` = 9
+      AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_provinsi = $this->db->query($sql_provinsi)->result_array();
     $arr_prov = [];
     for ($i = 0; $i < count($res_sql_provinsi); $i++) {
@@ -797,7 +802,8 @@ class Barzah extends CI_Controller
       ON `penduduk`.`nik` = `transaksi_komunitas`.`nik`
       LEFT JOIN `kota_kab`
       ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-      WHERE `transaksi_komunitas`.`id_program` = 9";
+      WHERE `transaksi_komunitas`.`id_program` = 9
+      AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_kab_kota = $this->db->query($sql_kab_kota)->result_array();
     $arr_kab_kota = [];
     $jumlah_pendamping = 0;

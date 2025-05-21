@@ -602,7 +602,8 @@ class Shelter extends CI_Controller
                                  FROM `penduduk` `a`
                                  JOIN `transaksi_individu` `b`
                                  ON `a`.`id_penduduk` = `b`.`pendamping1`
-                                 WHERE `b`.`pendamping1` = $id_pendamping1";
+                                 WHERE `b`.`pendamping1` = $id_pendamping1
+                                 AND `b`.`is_delete` = 0";
       $res_nik_pendamping1 = $this->db->query($sql_nik_pendamping1)->row();
       array_push($this->data['nik_pendamping1'], $res_nik_pendamping1->nik_pendamping1);
 
@@ -625,7 +626,8 @@ class Shelter extends CI_Controller
                                  FROM `penduduk` `a`
                                  JOIN `transaksi_individu` `b`
                                  ON `a`.`id_penduduk` = `b`.`pendamping2`
-                                 WHERE `b`.`pendamping2` = $id_pendamping2";
+                                 WHERE `b`.`pendamping2` = $id_pendamping2
+                                 AND `b`.`is_delete` = 0";
       $res_nik_pendamping2 = $this->db->query($sql_nik_pendamping2)->row();
       array_push($this->data['nik_pendamping2'], $res_nik_pendamping2->nik_pendamping2);
 
@@ -753,7 +755,8 @@ class Shelter extends CI_Controller
                                  FROM `penduduk` `a`
                                  JOIN `transaksi_individu` `b`
                                  ON `a`.`id_penduduk` = `b`.`pendamping1`
-                                 WHERE `b`.`pendamping1` = $id_pendamping1";
+                                 WHERE `b`.`pendamping1` = $id_pendamping1
+                                 AND `b`.`is_delete` = 0";
       $res_nik_pendamping1 = $this->db->query($sql_nik_pendamping1)->row();
       array_push($this->data['nik_pendamping1'], $res_nik_pendamping1->nik_pendamping1);
 
@@ -776,7 +779,8 @@ class Shelter extends CI_Controller
                                  FROM `penduduk` `a`
                                  JOIN `transaksi_individu` `b`
                                  ON `a`.`id_penduduk` = `b`.`pendamping2`
-                                 WHERE `b`.`pendamping2` = $id_pendamping2";
+                                 WHERE `b`.`pendamping2` = $id_pendamping2
+                                 AND `b`.`is_delete` = 0";
       $res_nik_pendamping2 = $this->db->query($sql_nik_pendamping2)->row();
       array_push($this->data['nik_pendamping2'], $res_nik_pendamping2->nik_pendamping2);
 

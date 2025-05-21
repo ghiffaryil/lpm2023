@@ -7,7 +7,7 @@ class Bsl extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    
+
     date_default_timezone_set('Asia/Jakarta');
     $this->data['module'] = 'Bsl';
 
@@ -676,7 +676,8 @@ class Bsl extends CI_Controller
      ON `penduduk`.`nik` = `transaksi_individu`.`nik`
      LEFT JOIN `provinsi`
      ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-     WHERE `transaksi_individu`.`id_program` = 8";
+     WHERE `transaksi_individu`.`id_program` = 8
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_provinsi = $this->db->query($sql_provinsi)->result_array();
     $arr_prov = [];
     for ($i = 0; $i < count($res_sql_provinsi); $i++) {
@@ -691,7 +692,8 @@ class Bsl extends CI_Controller
     ON `penduduk`.`nik` = `transaksi_individu`.`nik`
     LEFT JOIN `kota_kab`
     ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-    WHERE `transaksi_individu`.`id_program` = 8";
+    WHERE `transaksi_individu`.`id_program` = 8
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kab_kota = $this->db->query($sql_kab_kota)->result_array();
     $arr_kab_kota = [];
     $jumlah_bantuan = 0;
@@ -710,7 +712,8 @@ class Bsl extends CI_Controller
      FROM  `transaksi_individu`
      LEFT JOIN `penduduk`
      ON `penduduk`.`nik` = `transaksi_individu`.`nik`
-     WHERE `transaksi_individu`.`id_program` = 8";
+     WHERE `transaksi_individu`.`id_program` = 8
+     AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_jk = $this->db->query($sql_jk)->result_array();
 
     $arr_jk = [];
@@ -739,7 +742,8 @@ class Bsl extends CI_Controller
      FROM  `transaksi_komunitas`
      LEFT JOIN `transaksi_komunitas_d`
      ON `transaksi_komunitas`.`code` = `transaksi_komunitas_d`.`id_trans_komunitas_h`
-     WHERE `transaksi_komunitas`.`id_program` = 8";
+     WHERE `transaksi_komunitas`.`id_program` = 8
+     AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_kasus = $this->db->query($sql_kasus)->result_array();
 
     $arr_kasus = [];
@@ -768,7 +772,8 @@ class Bsl extends CI_Controller
      ON `transaksi_komunitas`.`code` = `transaksi_komunitas_d`.`id_trans_komunitas_h`
      LEFT JOIN `komunitas`
      ON `transaksi_komunitas`.`id_komunitas` = `komunitas`.`id_komunitas`
-     WHERE `transaksi_komunitas`.`id_program` = 8";
+     WHERE `transaksi_komunitas`.`id_program` = 8
+     AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_lapas = $this->db->query($sql_lapas)->result_array();
 
     $arr_lapas = [];
@@ -797,7 +802,8 @@ class Bsl extends CI_Controller
      ON `transaksi_komunitas`.`code` = `transaksi_komunitas_d`.`id_trans_komunitas_h`
      LEFT JOIN `komunitas`
      ON `transaksi_komunitas`.`id_komunitas` = `komunitas`.`id_komunitas`
-     WHERE `transaksi_komunitas`.`id_program` = 8";
+     WHERE `transaksi_komunitas`.`id_program` = 8
+     AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_lapas_jk = $this->db->query($sql_lapas_jk)->result_array();
     // var_dump($res_sql_lapas_jk);
     // die;

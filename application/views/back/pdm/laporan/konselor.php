@@ -135,7 +135,7 @@
 					                            		</div>
 					                            	</div>
 					                        	</div>
-				                            	<table id="tabel-individu" class="table table-striped nowrap" width="100%">
+				                            	<table id="tabel-individu" class="table table-striped nowrap display" width="100%">
 												<thead>
 															<tr>
 																<th width="5px">No</th> <!-- 0 -->
@@ -486,51 +486,48 @@
 	        format: 'YYYY-MM-DD'
 	    });
 
-	    var table = $('#tabel-individu').DataTable({
-	    	"scrollX"	: true,
-	    	"searchPanes" :{
-                cascadePanes: true
-            },
-            "searchPanes": true,
-            "columnDefs" :[
-            	{
-	                searchPanes:{
-	                    show: true,
-	                },
-	                targets: [1,5],
-            	}
-            ],
-	    	"pageLength": 25,
-	    	"dom"    	: '<"top"<"row"<"col-lg-6"B><"col-lg-6 text-right"f>>>rtt<"bottom"<"row mt-1"<"col-lg-6"i><"col-lg-6"p>>>',
-	    	// "dom"    	: '<"top"<"row"<"col-lg-12"P><"col-lg-6"B><"col-lg-6 text-right"f>>>rt<"bottom"<"row mt-1"<"col-lg-6"i><"col-lg-6"p>>>',
-	    	"language": {
-	            "lengthMenu": "_MENU_",
-	            "info": "Page _PAGE_ of _PAGES_",
-	            "infoFiltered": "(filtered from _MAX_ total records)"
-	        },
+		var table = $('#tabel-individu').DataTable({
+			scrollX: true,
+			responsive: true,
+			searchPanes: {
+				cascadePanes: true
+			},
+			columnDefs: [{
+				searchPanes: {
+					show: true,
+				},
+				targets: [1, 5],
+			}],
+			pageLength: 33,
+			dom: '<"top"<"row"<"col-lg-6"B><"col-lg-6 text-right"f>>>rt<"bottom"<"row mt-1"<"col-lg-6"i><"col-lg-6"p>>>',
+			language: {
+				lengthMenu: "_MENU_",
+				info: "Page _PAGE_ of _PAGES_",
+				infoFiltered: "(filtered from _MAX_ total records)"
+			},
 	    	"buttons"	: [
 	    		{
                     extend: 'copy',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
                     }
                 },
                 {
                     extend: 'csv',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
                     }
                 },
 	    		{
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
                     }
                 },
 	    		{
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
                     },
                     customize: function(win){
 

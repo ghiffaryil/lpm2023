@@ -523,7 +523,8 @@ class Brp extends CI_Controller
       ON `penduduk`.`nik` = `transaksi_individu`.`nik`
       LEFT JOIN `provinsi`
       ON `penduduk`.`id_provinsi` = `provinsi`.`id_provinsi`
-      WHERE `transaksi_individu`.`id_program` = 6";
+      WHERE `transaksi_individu`.`id_program` = 6
+      AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_provinsi = $this->db->query($sql_provinsi)->result_array();
     $arr_prov = [];
     for ($i = 0; $i < count($res_sql_provinsi); $i++) {
@@ -539,7 +540,8 @@ class Brp extends CI_Controller
           ON `penduduk`.`nik` = `transaksi_individu`.`nik`
           LEFT JOIN `kota_kab`
           ON `penduduk`.`id_kota_kab` = `kota_kab`.`id_kota_kab`
-          WHERE `transaksi_individu`.`id_program` = 6";
+          WHERE `transaksi_individu`.`id_program` = 6
+          AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_kab_kota = $this->db->query($sql_kab_kota)->result_array();
     $arr_kab_kota = [];
     for ($i = 0; $i < count($res_sql_kab_kota); $i++) {
@@ -557,7 +559,8 @@ class Brp extends CI_Controller
     FROM  `transaksi_individu`
     LEFT JOIN `penduduk`
     ON `penduduk`.`nik` = `transaksi_individu`.`nik`
-    WHERE `transaksi_individu`.`id_program` = 6";
+    WHERE `transaksi_individu`.`id_program` = 6
+    AND `transaksi_individu`.`is_delete` = 0";
     $res_sql_jk = $this->db->query($sql_jk)->result_array();
 
     $arr_jk = [];
@@ -587,7 +590,8 @@ class Brp extends CI_Controller
     FROM  `transaksi_komunitas_d`
     LEFT JOIN `transaksi_komunitas`
     ON `transaksi_komunitas_d`.`id_trans_komunitas_h` = `transaksi_komunitas`.`code`
-    WHERE `transaksi_komunitas`.`id_program` = 6";
+    WHERE `transaksi_komunitas`.`id_program` = 6
+    AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_jp = $this->db->query($sql_jp)->result_array();
 
     $arr_jp = [];
@@ -616,7 +620,8 @@ class Brp extends CI_Controller
     ON `transaksi_komunitas`.`id_komunitas` = `komunitas`.`id_komunitas`
     LEFT JOIN `transaksi_komunitas_d`
     ON `transaksi_komunitas_d`.`id_trans_komunitas_h` = `transaksi_komunitas`.`code`
-    WHERE `transaksi_komunitas`.`id_program` = 6";
+    WHERE `transaksi_komunitas`.`id_program` = 6
+    AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_pb = $this->db->query($sql_pb)->result_array();
 
     $arr_pb = [];
@@ -646,7 +651,8 @@ class Brp extends CI_Controller
     ON `transaksi_komunitas`.`id_komunitas` = `komunitas`.`id_komunitas`
     LEFT JOIN `transaksi_komunitas_d`
     ON `transaksi_komunitas_d`.`id_trans_komunitas_h` = `transaksi_komunitas`.`code`
-    WHERE `transaksi_komunitas`.`id_program` = 6";
+    WHERE `transaksi_komunitas`.`id_program` = 6
+    AND `transaksi_komunitas`.`is_delete` = 0";
     $res_sql_rs = $this->db->query($sql_rs)->result_array();
 
     $arr_rs = [];
