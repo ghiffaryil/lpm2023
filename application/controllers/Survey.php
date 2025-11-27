@@ -542,11 +542,52 @@ class Survey extends CI_Controller
         $this->data['nama_prov'] = $this->db->query($sql_prov)->row_array();
 
 
-        $this->data['page_title'] = $this->data['module'] . ' Detail';
+        $this->data['page_title'] = 'Scoring Detail E-Survey';
         $this->data['header'] = $this->data['module'];
         $this->data['path'] = base_url('assets');
 
         $this->load->view('back/survey/detail_scoring', $this->data);
+    }
+
+    public function summary()
+    {
+        $id = $this->input->get("id");
+        $sql = "SELECT * FROM scoring WHERE id = '$id'";
+        $res = $this->db->query($sql)->row_array();
+        $this->data['data'] = $res;
+        $this->data['hari'] = array(
+            "Sun" => "Minggu",
+            "Mon" => "Senin",
+            "Tue" => "Selasa",
+            "Wed" => "Rabu",
+            "Thu" => "Kamis",
+            "Fri" => "Jumat",
+            "Sat" => "Sabtu"
+        );
+
+        $id_kel = $res['kelurahan'];
+        $sql_kel = "SELECT * FROM desa_kelurahan WHERE id_desa_kelurahan = '$id_kel'";
+        $this->data['nama_kel'] = $this->db->query($sql_kel)->row_array();
+
+
+        $id_kec = $res['kecamatan'];
+        $sql_kec = "SELECT * FROM kecamatan WHERE id_kecamatan = '$id_kec'";
+        $this->data['nama_kec'] = $this->db->query($sql_kec)->row_array();
+
+        $id_kab = $res['kabupaten'];
+        $sql_kab = "SELECT * FROM kota_kab WHERE id_kota_kab = '$id_kab'";
+        $this->data['nama_kab'] = $this->db->query($sql_kab)->row_array();
+
+        $id_prov = $res['provinsi'];
+        $sql_prov = "SELECT * FROM provinsi WHERE id_provinsi = '$id_prov'";
+        $this->data['nama_prov'] = $this->db->query($sql_prov)->row_array();
+
+
+        $this->data['page_title'] = 'SUMMARY';
+        $this->data['header'] = $this->data['module'];
+        $this->data['path'] = base_url('assets');
+
+        $this->load->view('back/survey/summary', $this->data);
     }
 
     public function print()
@@ -590,6 +631,49 @@ class Survey extends CI_Controller
         $data['path'] = base_url('assets');
         $this->load->view('back/survey/print', $this->data);
     }
+
+    public function print_summary()
+    {
+        $id = $this->input->get("id");
+        $sql = "SELECT * FROM scoring WHERE id = '$id'";
+        $res = $this->db->query($sql)->row_array();
+        $this->data['data'] = $res;
+
+        $this->data['hari'] = array(
+            "Sun" => "Minggu",
+            "Mon" => "Senin",
+            "Tue" => "Selasa",
+            "Wed" => "Rabu",
+            "Thu" => "Kamis",
+            "Fri" => "Jumat",
+            "Sat" => "Sabtu"
+        );
+
+        $id_kel = $res['kelurahan'];
+        $sql_kel = "SELECT * FROM desa_kelurahan WHERE id_desa_kelurahan = '$id_kel'";
+        $this->data['nama_kel'] = $this->db->query($sql_kel)->row_array();
+
+
+        $id_kec = $res['kecamatan'];
+        $sql_kec = "SELECT * FROM kecamatan WHERE id_kecamatan = '$id_kec'";
+        $this->data['nama_kec'] = $this->db->query($sql_kec)->row_array();
+
+        $id_kab = $res['kabupaten'];
+        $sql_kab = "SELECT * FROM kota_kab WHERE id_kota_kab = '$id_kab'";
+        $this->data['nama_kab'] = $this->db->query($sql_kab)->row_array();
+
+        $id_prov = $res['provinsi'];
+        $sql_prov = "SELECT * FROM provinsi WHERE id_provinsi = '$id_prov'";
+        $this->data['nama_prov'] = $this->db->query($sql_prov)->row_array();
+
+        $this->data['page_title'] = 'SUMMARY';
+        $this->data['header'] = $this->data['module'];
+        $this->data['data_survey'] = $this->db->get('scoring')->result();
+
+        $data['path'] = base_url('assets');
+        $this->load->view('back/survey/print_summary', $this->data);
+    }
+
     public function print_detail()
     {
         $id = $this->input->get("id");

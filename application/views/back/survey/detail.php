@@ -228,6 +228,9 @@
                                             <br>
 
                                             <div class="col-xs-12 col-sm-6 text-right visible-lg">
+                                                <a href="summary?id=<?php echo $detail['id']; ?>" class="btn btn-outline-dark">
+                                                    Summary
+                                                </a>
                                                 <button type="button" class="btn btn-secondary" onclick="history.back()">
                                                     <i class="fa fa-angle-left"></i> Kembali
                                                 </button>
